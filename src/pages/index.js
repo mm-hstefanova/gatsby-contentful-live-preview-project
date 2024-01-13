@@ -10,6 +10,7 @@ export default function Homepage(props) {
 
   return (
     <Layout>
+      <h1>Hrisi test goes here</h1>
       {homepage.blocks.map((block) => {
         const { id, blocktype, ...componentProps } = block
         const Component = sections[blocktype] || Fallback
