@@ -5,7 +5,7 @@ import * as sections from "../components/sections"
 import Fallback from "../components/fallback"
 import SEOHead from "../components/head"
 
-import { useContentfulLiveUpdates } from "@contentful/live-preview/react"
+// import { useContentfulLiveUpdates } from "@contentful/live-preview/react"
 
 export default function Homepage(props) {
   const { homepage } = props.data

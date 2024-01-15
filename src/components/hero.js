@@ -13,34 +13,51 @@ import {
   Text,
 } from "./ui"
 
-import { useContentfulLiveUpdates } from "@contentful/live-preview/react"
+import {
+  useContentfulLiveUpdates,
+  useContentfulInspectorMode,
+} from "@contentful/live-preview/react"
 
 export default function Hero({ contentful_id, ...props }) {
-  console.log("contentful_id: ", contentful_id)
+  const inspectorProps = useContentfulInspectorMode()
   const data = useContentfulLiveUpdates({
     ...props,
-    sys: { id: props.contentful_id },
+    sys: { id: contentful_id },
   })
+
+  console.log("data: ", data)
+
+  React.useEffect(() => {
+    console.log("updated data: ", data)
+  }, [data])
   return (
     <Section>
       <Container>
         <Flex gap={4} variant="responsive">
           <Box width="half">
-            {props.image && (
+            {data.image && (
               <GatsbyImage
-                alt={props.image.alt}
+                alt={data.image.alt}
                 image={getImage(props.image.gatsbyImageData)}
               />
             )}
           </Box>
           <Box width="half">
             <Heading as="h1">
-              {props.kicker && <Kicker>{props.kicker}</Kicker>}
-              {props.h1}
+              {props.kicker && <Kicker>{data.kicker}</Kicker>}
+              {data.h1}
             </Heading>
-            <Subhead as="h2">{props.subhead}</Subhead>
-            <Text as="p">{props.text}</Text>
-            <ButtonList links={props.links} />
+            <Subhead as="h2">{data.subhead}</Subhead>
+            <Text
+              as="p"
+              {...inspectorProps({
+                entryId: contentful_id,
+                fieldId: "text",
+              })}
+            >
+              {data.text}
+            </Text>
+            <ButtonList links={data.links} />
           </Box>
         </Flex>
       </Container>
