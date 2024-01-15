@@ -13,7 +13,14 @@ import {
   Text,
 } from "./ui"
 
-export default function Hero(props) {
+import { useContentfulLiveUpdates } from "@contentful/live-preview/react"
+
+export default function Hero({ contentful_id, ...props }) {
+  console.log("contentful_id: ", contentful_id)
+  const data = useContentfulLiveUpdates({
+    ...props,
+    sys: { id: props.contentful_id },
+  })
   return (
     <Section>
       <Container>
@@ -43,6 +50,8 @@ export default function Hero(props) {
 
 export const query = graphql`
   fragment HomepageHeroContent on HomepageHero {
+    __typename
+    contentful_id
     id
     kicker
     h1: heading

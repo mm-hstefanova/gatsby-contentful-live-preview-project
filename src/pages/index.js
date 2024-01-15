@@ -10,13 +10,10 @@ import { useContentfulLiveUpdates } from "@contentful/live-preview/react"
 export default function Homepage(props) {
   const { homepage } = props.data
 
-  const updatedEntries = useContentfulLiveUpdates(homepage, { query })
-
-  console.log("updatedEntries: ", updatedEntries)
   return (
     <Layout>
       <h1>Hrisi test goes here</h1>
-      {updatedEntries.blocks.map((block) => {
+      {homepage.blocks.map((block) => {
         const { id, blocktype, ...componentProps } = block
         const Component = sections[blocktype] || Fallback
         return <Component key={id} {...componentProps} />
@@ -30,7 +27,7 @@ export const Head = (props) => {
 }
 export const query = graphql`
   {
-    homepage(preview: true) {
+    homepage {
       __typename
       id
       title
@@ -39,6 +36,7 @@ export const query = graphql`
         id
         url
       }
+
       blocks: content {
         id
         blocktype

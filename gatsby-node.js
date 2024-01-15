@@ -118,6 +118,7 @@ exports.createSchemaCustomization = async ({ actions }) => {
 
     interface HomepageHero implements Node & HomepageBlock {
       id: ID!
+      contentful_id: String! # add this property
       blocktype: String
       heading: String!
       kicker: String
@@ -380,6 +381,7 @@ exports.createSchemaCustomization = async ({ actions }) => {
     type ContentfulHomepageHero implements Node & HomepageHero & HomepageBlock
       @dontInfer {
       id: ID!
+      contentful_id: String!
       blocktype: String @blocktype
       heading: String!
       kicker: String
@@ -623,4 +625,3 @@ exports.createPages = ({ actions }) => {
     component: require.resolve("./src/components/footer.js"),
   })
 }
-      
