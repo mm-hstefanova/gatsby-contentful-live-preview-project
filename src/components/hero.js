@@ -25,11 +25,6 @@ export default function Hero({ contentful_id, ...props }) {
     sys: { id: contentful_id },
   })
 
-  console.log("data: ", data)
-
-  React.useEffect(() => {
-    console.log("updated data: ", data)
-  }, [data])
   return (
     <Section>
       <Container>
