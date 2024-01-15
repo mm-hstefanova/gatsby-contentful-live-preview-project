@@ -5,11 +5,6 @@ require("dotenv").config({
 })
 
 module.exports = {
-  space_id: process.env.CONTENTFUL_SPACE_ID,
-  delivery_token: process.env.CONTENTFUL_DELIVERY_ACCESS_TOKEN,
-  preview_token: process.env.CONTENTFUL_PREVIEW_ACCESS_TOKEN,
-  previewSecret: "testing",
-  environment: "master",
   siteMetadata: {
     siteUrl: "https://gatsbycontentfulhomepage.gatsbyjs.io/",
     title: "Gatsby Contentful Homepage Starter",
@@ -23,7 +18,8 @@ module.exports = {
         downloadLocal: true,
         spaceId: process.env.CONTENTFUL_SPACE_ID,
         accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
-        host: process.env.CONTENTFUL_HOST,
+        previewSecret: "testing",
+        environment: "master",
       },
     },
     "gatsby-plugin-sharp",
