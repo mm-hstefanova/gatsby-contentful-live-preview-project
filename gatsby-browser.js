@@ -7,7 +7,7 @@ import "@fontsource/dm-mono/500.css"
 import React from "react"
 import { ContentfulLivePreviewProvider } from "@contentful/live-preview/react"
 
-export const wrapRootElement = ({ element }) => (
+export const wrapRootElement = ({ Component, pageProps, element }) => (
   <ContentfulLivePreviewProvider locale="en-US">
     {element}
   </ContentfulLivePreviewProvider>
