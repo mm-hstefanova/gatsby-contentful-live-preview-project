@@ -13,10 +13,7 @@ import {
   LinkList,
 } from "./ui"
 
-import {
-  useContentfulLiveUpdates,
-  useContentfulInspectorMode,
-} from "@contentful/live-preview/react"
+import { useContentfulLiveUpdates } from "@contentful/live-preview/react"
 
 function Product({ contentful_id, ...props }) {
   const updatedData = useContentfulLiveUpdates({

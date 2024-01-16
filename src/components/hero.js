@@ -13,14 +13,9 @@ import {
   Text,
 } from "./ui"
 
-import {
-  useContentfulLiveUpdates,
-  useContentfulInspectorMode,
-} from "@contentful/live-preview/react"
+import { useContentfulLiveUpdates } from "@contentful/live-preview/react"
 
 export default function Hero({ contentful_id, ...props }) {
-  const inspectorProps = useContentfulInspectorMode()
-
   const data = useContentfulLiveUpdates({
     ...props,
     sys: { id: contentful_id },
@@ -44,15 +39,7 @@ export default function Hero({ contentful_id, ...props }) {
               {data.h1}
             </Heading>
             <Subhead as="h2">{data.subhead}</Subhead>
-            <Text
-              as="p"
-              {...inspectorProps({
-                entryId: contentful_id,
-                fieldId: "text",
-              })}
-            >
-              {data.text}
-            </Text>
+            <Text as="p">{data.text}</Text>
             <ButtonList links={data.links} />
           </Box>
         </Flex>
