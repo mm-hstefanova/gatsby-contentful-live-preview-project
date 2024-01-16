@@ -41,18 +41,20 @@ export default function ProductList({ contentful_id, ...props }) {
     ...props,
     sys: { id: contentful_id },
   })
+
+  console.log("updatedData: ", updatedData)
   return (
     <Section>
       <Container>
         <Box center paddingY={4}>
           <Heading>
-            {props.kicker && <Kicker>{props.kicker}</Kicker>}
-            {props.heading}
+            {updatedData.kicker && <Kicker>{updatedData.kicker}</Kicker>}
+            {updatedData.heading}
           </Heading>
-          {props.text && <Text>{props.text}</Text>}
+          {updatedData.text && <Text>{updatedData.text}</Text>}
         </Box>
         <FlexList gap={4} variant="responsive">
-          {props.content.map((product) => (
+          {updatedData.content.map((product) => (
             <li key={product.id}>
               <Product {...product} />
             </li>
@@ -72,6 +74,7 @@ export const query = graphql`
     text
     content {
       id
+      contentful_id
       heading
       text
       image {
