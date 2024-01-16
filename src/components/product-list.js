@@ -18,31 +18,35 @@ import {
   useContentfulInspectorMode,
 } from "@contentful/live-preview/react"
 
-function Product(props) {
+function Product({ contentful_id, ...props }) {
+  const updatedData = useContentfulLiveUpdates({
+    ...props,
+    sys: { id: contentful_id },
+  })
+  console.log("product: ", updatedData)
   return (
     <Box center>
-      {props.image && (
+      {updatedData.image && (
         <Icon
-          alt={props.image.alt}
-          image={props.image.gatsbyImageData}
+          alt={updatedData.image.alt}
+          image={updatedData.image.gatsbyImageData}
           size="large"
         />
       )}
-      <Subhead>{props.heading}</Subhead>
-      <Text>{props.text}</Text>
-      <LinkList links={props.links} />
+      <Subhead>{updatedData.heading}</Subhead>
+      <Text>{updatedData.text}</Text>
+      <LinkList links={updatedData.links} />
     </Box>
   )
 }
 
 export default function ProductList({ contentful_id, ...props }) {
-  console.log("product list: ", contentful_id)
   const updatedData = useContentfulLiveUpdates({
     ...props,
     sys: { id: contentful_id },
   })
 
-  console.log("updatedData: ", updatedData)
+  console.log("product list: ", updatedData)
   return (
     <Section>
       <Container>
@@ -74,7 +78,7 @@ export const query = graphql`
     text
     content {
       id
-      # contentful_id
+      contentful_id
       heading
       text
       image {
