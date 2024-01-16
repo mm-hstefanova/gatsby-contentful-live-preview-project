@@ -13,6 +13,11 @@ import {
   LinkList,
 } from "./ui"
 
+import {
+  useContentfulLiveUpdates,
+  useContentfulInspectorMode,
+} from "@contentful/live-preview/react"
+
 function Product(props) {
   return (
     <Box center>
@@ -30,7 +35,12 @@ function Product(props) {
   )
 }
 
-export default function ProductList(props) {
+export default function ProductList({ contentful_id, ...props }) {
+  console.log("product list: ", contentful_id)
+  const updatedData = useContentfulLiveUpdates({
+    ...props,
+    sys: { id: contentful_id },
+  })
   return (
     <Section>
       <Container>
@@ -56,6 +66,7 @@ export default function ProductList(props) {
 export const query = graphql`
   fragment HomepageProductListContent on HomepageProductList {
     id
+    contentful_id
     kicker
     heading
     text

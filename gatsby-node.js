@@ -221,6 +221,7 @@ exports.createSchemaCustomization = async ({ actions }) => {
 
     interface HomepageProduct implements Node {
       id: ID!
+      contentful_id: String!
       heading: String
       text: String
       image: HomepageImage
@@ -229,6 +230,7 @@ exports.createSchemaCustomization = async ({ actions }) => {
 
     interface HomepageProductList implements Node & HomepageBlock {
       id: ID!
+      contentful_id: String!
       blocktype: String
       heading: String
       kicker: String
