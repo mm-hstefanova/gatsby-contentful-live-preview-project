@@ -397,6 +397,7 @@ exports.createSchemaCustomization = async ({ actions }) => {
 
     type ContentfulHomepageFeature implements Node & HomepageBlock & HomepageFeature
       @dontInfer {
+      contentful_id: String
       blocktype: String @blocktype
       heading: String
       kicker: String
@@ -407,6 +408,7 @@ exports.createSchemaCustomization = async ({ actions }) => {
 
     type ContentfulHomepageFeatureList implements Node & HomepageBlock & HomepageFeatureList
       @dontInfer {
+      contentful_id: String
       blocktype: String @blocktype
       kicker: String
       heading: String
@@ -494,6 +496,7 @@ exports.createSchemaCustomization = async ({ actions }) => {
     type ContentfulHomepageProduct implements Node & HomepageProduct
       @dontInfer {
       heading: String
+      contentful_id: String
       text: String
       image: HomepageImage @link(from: "image___NODE")
       links: [HomepageLink] @link(from: "links___NODE")
@@ -502,6 +505,7 @@ exports.createSchemaCustomization = async ({ actions }) => {
     type ContentfulHomepageProductList implements Node & HomepageProductList & HomepageBlock
       @dontInfer {
       blocktype: String @blocktype
+      contentful_id: String
       heading: String
       kicker: String
       text: String
