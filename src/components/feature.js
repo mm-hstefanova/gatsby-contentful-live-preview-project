@@ -12,26 +12,36 @@ import {
   ButtonList,
 } from "./ui"
 
-export default function Feature(props) {
+import {
+  useContentfulLiveUpdates,
+  useContentfulInspectorMode,
+} from "@contentful/live-preview/react"
+
+export default function Feature({ contentful_id, ...props }) {
+  const updatedData = useContentfulInspectorMode({
+    ...props,
+    sys: { id: contentful_id },
+  })
+  console.log(updatedData)
   return (
     <Section padding={4} background="muted">
       <Container>
         <Flex gap={4} variant="responsive">
-          <Box width="half" order={props.flip ? 1 : null}>
-            {props.image && (
+          <Box width="half" order={updatedData.flip ? 1 : null}>
+            {updatedData.image && (
               <GatsbyImage
-                alt={props.image.alt}
-                image={getImage(props.image.gatsbyImageData)}
+                alt={updatedData.image.alt}
+                image={getImage(updatedData.image.gatsbyImageData)}
               />
             )}
           </Box>
           <Box width="half">
             <Subhead>
-              {props.kicker && <Kicker>{props.kicker}</Kicker>}
-              {props.heading}
+              {updatedData.kicker && <Kicker>{updatedData.kicker}</Kicker>}
+              {updatedData.heading}
             </Subhead>
-            <Text variant="lead">{props.text}</Text>
-            <ButtonList links={props.links} />
+            <Text variant="lead">{updatedData.text}</Text>
+            <ButtonList links={updatedData.links} />
           </Box>
         </Flex>
       </Container>
@@ -42,6 +52,7 @@ export default function Feature(props) {
 export const query = graphql`
   fragment HomepageFeatureContent on HomepageFeature {
     id
+    contentful_id
     kicker
     heading
     text

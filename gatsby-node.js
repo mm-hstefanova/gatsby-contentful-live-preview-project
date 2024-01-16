@@ -130,6 +130,7 @@ exports.createSchemaCustomization = async ({ actions }) => {
 
     interface HomepageFeature implements Node & HomepageBlock {
       id: ID!
+      contentful_id: String!
       blocktype: String
       heading: String
       kicker: String
@@ -140,6 +141,7 @@ exports.createSchemaCustomization = async ({ actions }) => {
 
     interface HomepageFeatureList implements Node & HomepageBlock {
       id: ID!
+      contentful_id: String!
       blocktype: String
       kicker: String
       heading: String

@@ -74,7 +74,7 @@ export const query = graphql`
     text
     content {
       id
-      contentful_id
+      # contentful_id
       heading
       text
       image {
