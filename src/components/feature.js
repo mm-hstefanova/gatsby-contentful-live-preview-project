@@ -12,17 +12,14 @@ import {
   ButtonList,
 } from "./ui"
 
-import {
-  useContentfulLiveUpdates,
-  useContentfulInspectorMode,
-} from "@contentful/live-preview/react"
+import { useContentfulLiveUpdates } from "@contentful/live-preview/react"
 
 export default function Feature({ contentful_id, ...props }) {
-  const updatedData = useContentfulInspectorMode({
+  const updatedData = useContentfulLiveUpdates({
     ...props,
     sys: { id: contentful_id },
   })
-  console.log(updatedData)
+  console.log("feature:", updatedData)
   return (
     <Section padding={4} background="muted">
       <Container>
