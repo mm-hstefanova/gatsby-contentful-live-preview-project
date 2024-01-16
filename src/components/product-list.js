@@ -54,13 +54,13 @@ export default function ProductList({ contentful_id, ...props }) {
           </Heading>
           {updatedData.text && <Text>{updatedData.text}</Text>}
         </Box>
-        <FlexList gap={4} variant="responsive">
+        {/* <FlexList gap={4} variant="responsive">
           {updatedData.content.map((product) => (
             <li key={product.id}>
               <Product {...product} />
             </li>
           ))}
-        </FlexList>
+        </FlexList> */}
       </Container>
     </Section>
   )
@@ -73,21 +73,21 @@ export const query = graphql`
     kicker
     heading
     text
-    content {
-      id
-      contentful_id
-      heading
-      text
-      image {
-        alt
-        id
-        gatsbyImageData
-      }
-      links {
-        id
-        href
-        text
-      }
-    }
+    # content {
+    #   id
+    #   contentful_id
+    #   heading
+    #   text
+    #   image {
+    #     alt
+    #     id
+    #     gatsbyImageData
+    #   }
+    #   links {
+    #     id
+    #     href
+    #     text
+    #   }
+    # }
   }
 `
