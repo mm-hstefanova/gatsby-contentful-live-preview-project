@@ -20,6 +20,7 @@ import {
 
 export default function Hero({ contentful_id, ...props }) {
   const inspectorProps = useContentfulInspectorMode()
+
   const data = useContentfulLiveUpdates({
     ...props,
     sys: { id: contentful_id },
@@ -33,13 +34,13 @@ export default function Hero({ contentful_id, ...props }) {
             {data.image && (
               <GatsbyImage
                 alt={data.image.alt}
-                image={getImage(props.image.gatsbyImageData)}
+                image={getImage(data.image.gatsbyImageData)}
               />
             )}
           </Box>
           <Box width="half">
             <Heading as="h1">
-              {props.kicker && <Kicker>{data.kicker}</Kicker>}
+              {data.kicker && <Kicker>{data.kicker}</Kicker>}
               {data.h1}
             </Heading>
             <Subhead as="h2">{data.subhead}</Subhead>
