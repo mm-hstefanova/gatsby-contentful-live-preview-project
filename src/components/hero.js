@@ -38,7 +38,7 @@ export default function Hero({ contentful_id, ...props }) {
               {data.kicker && <Kicker>{data.kicker}</Kicker>}
               {data.h1}
             </Heading>
-            <h3>Heading: {data.h1}</h3>
+            <h3 style={{ color: "red" }}>Heading: {data.h1}</h3>
             <h4>Simple heading: {data.simpleHeading}</h4>
             <Subhead as="h2">{data.subhead}</Subhead>
             <Text as="p">{data.text}</Text>
