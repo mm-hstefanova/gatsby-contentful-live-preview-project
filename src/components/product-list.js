@@ -16,51 +16,52 @@ import {
 import { useContentfulLiveUpdates } from "@contentful/live-preview/react"
 
 function Product({ contentful_id, ...props }) {
-  const updatedData = useContentfulLiveUpdates({
+  const data = useContentfulLiveUpdates({
     ...props,
     sys: { id: contentful_id },
   })
-  console.log("product: ", updatedData)
+  console.log("product: ", data)
   return (
     <Box center>
-      {updatedData.image && (
+      {data.image && (
         <Icon
-          alt={updatedData.image.alt}
-          image={updatedData.image.gatsbyImageData}
+          alt={data.image.alt}
+          image={data.image.gatsbyImageData}
           size="large"
         />
       )}
-      <Subhead>{updatedData.heading}</Subhead>
-      <Text>{updatedData.text}</Text>
-      <LinkList links={updatedData.links} />
+      <Subhead>{data.heading}</Subhead>
+      <Text>{data.text}</Text>
+      <LinkList links={data.links} />
     </Box>
   )
 }
 
 export default function ProductList({ contentful_id, ...props }) {
-  const updatedData = useContentfulLiveUpdates({
+  const data = useContentfulLiveUpdates({
     ...props,
     sys: { id: contentful_id },
   })
 
-  console.log("product list: ", updatedData)
+  console.log("data: ", data)
+
   return (
     <Section>
       <Container>
         <Box center paddingY={4}>
           <Heading>
-            {updatedData.kicker && <Kicker>{updatedData.kicker}</Kicker>}
-            {updatedData.heading}
+            {data.kicker && <Kicker>{data.kicker}</Kicker>}
+            {data.heading}
           </Heading>
-          {updatedData.text && <Text>{updatedData.text}</Text>}
+          {data.text && <Text>{data.text}</Text>}
         </Box>
-        {/* <FlexList gap={4} variant="responsive">
-          {updatedData.content.map((product) => (
+        <FlexList gap={4} variant="responsive">
+          {data.content.map((product) => (
             <li key={product.id}>
               <Product {...product} />
             </li>
           ))}
-        </FlexList> */}
+        </FlexList>
       </Container>
     </Section>
   )
@@ -73,21 +74,21 @@ export const query = graphql`
     kicker
     heading
     text
-    # content {
-    #   id
-    #   contentful_id
-    #   heading
-    #   text
-    #   image {
-    #     alt
-    #     id
-    #     gatsbyImageData
-    #   }
-    #   links {
-    #     id
-    #     href
-    #     text
-    #   }
-    # }
+    content {
+      id
+      contentful_id
+      heading
+      text
+      image {
+        alt
+        id
+        gatsbyImageData
+      }
+      links {
+        id
+        href
+        text
+      }
+    }
   }
 `

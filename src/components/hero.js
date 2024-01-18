@@ -38,6 +38,8 @@ export default function Hero({ contentful_id, ...props }) {
               {data.kicker && <Kicker>{data.kicker}</Kicker>}
               {data.h1}
             </Heading>
+            <h3>Heading: {data.h1}</h3>
+            <h4>Simple heading: {data.simpleHeading}</h4>
             <Subhead as="h2">{data.subhead}</Subhead>
             <Text as="p">{data.text}</Text>
             <ButtonList links={data.links} />
@@ -56,8 +58,10 @@ export const query = graphql`
     kicker
     h1: heading
     subhead
+    simpleHeading
     text
     links {
+      contentful_id
       id
       href
       text

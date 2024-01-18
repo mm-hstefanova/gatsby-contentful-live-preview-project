@@ -84,6 +84,7 @@ exports.createSchemaCustomization = async ({ actions }) => {
 
     interface HomepageLink implements Node {
       id: ID!
+      contentful_id: String!
       href: String
       text: String
     }
@@ -121,6 +122,7 @@ exports.createSchemaCustomization = async ({ actions }) => {
       contentful_id: String! # add this property
       blocktype: String
       heading: String!
+      simpleHeading: String
       kicker: String
       subhead: String
       image: HomepageImage
@@ -351,6 +353,7 @@ exports.createSchemaCustomization = async ({ actions }) => {
   actions.createTypes(/* GraphQL */ `
     type ContentfulHomepageLink implements Node & HomepageLink @dontInfer {
       id: ID!
+      contentful_id: String!
       href: String
       text: String
     }
@@ -388,6 +391,7 @@ exports.createSchemaCustomization = async ({ actions }) => {
       contentful_id: String!
       blocktype: String @blocktype
       heading: String!
+      simpleHeading: String
       kicker: String
       subhead: String
       image: HomepageImage @link(from: "image___NODE")
